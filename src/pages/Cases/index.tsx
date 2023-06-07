@@ -33,8 +33,9 @@ const UseCases = () => (
             by night-time light recovery sector. The findings of this analysis have been published as part of the
             emergency response on the official UNOSAT website.
           </p>
-        </Card>
-        <Card title='Light loss assessment' className={styles.welcome} bordered={false}>
+          <p>
+            <b style={{ color: '#c64751' }}>Light loss assessment</b>
+          </p>
           <p>
             After the earthquake, Türkiye entered a state of emergency to enable expeditious search and rescue and
             post-disaster activities. It’s significant to find and map the earthquake hazard in Türkiye and Syria. Based
@@ -90,8 +91,9 @@ const UseCases = () => (
           <span>
             Access to the report is : <Link theme='primary'>https://www.unosat.org/products/3497</Link>
           </span>
-        </Card>
-        <Card title='Power supply recovery assessment' className={styles.welcome} bordered={false}>
+          <p>
+            <b style={{ color: '#c64751' }}>Power supply recovery assessment</b>
+          </p>
           <p>
             After the earthquakes happened on February 6, another earthquake hit Hatay about 14 days later which caused
             additional challenges to the recovery process. The government and other organizations announced
