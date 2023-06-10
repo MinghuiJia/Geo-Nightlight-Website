@@ -74,6 +74,17 @@ const Contact: React.FC<BrowserRouterProps> = () => {
           {/*</Card>*/}
         </Col>
         <Col xs={12} lg={12} xl={3}>
+          {/*<Card*/}
+          {/*  className={styles.teams}*/}
+          {/*  bordered={false}*/}
+          {/*  title='Contact'*/}
+          {/*  description={*/}
+          {/*    <>*/}
+          {/*      GEO Night Light welcomes global experts, institutes and organizations who are interested in this*/}
+          {/*      project, please be free to contact Prof. Xi Li from Wuhan University.*/}
+          {/*    </>*/}
+          {/*  }*/}
+          {/*></Card>*/}
           <Card className={styles.postmsg}>
             <div className={styles.avatar}>
               <span>Li</span>
@@ -82,10 +93,7 @@ const Contact: React.FC<BrowserRouterProps> = () => {
             <div className={styles.position}>Wuhan University</div>
           </Card>
           <Card className={styles.teams} bordered={false} title='Email'>
-            li_rs@163.com
-          </Card>
-          <Card className={styles.teams} bordered={false} title='Email'>
-            lixi@whu.edu.cn
+            li_rs@163.com <br /> lixi@whu.edu.cn
           </Card>
         </Col>
       </Row>

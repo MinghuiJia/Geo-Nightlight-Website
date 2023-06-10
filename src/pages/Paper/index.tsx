@@ -11,7 +11,7 @@ const Paper: React.FC<BrowserRouterProps> = () => {
   const listData = [
     {
       title:
-        '1.JIA M., LI X., GONG Y., et al. Estimating natural disaster loss using improved daily night-time light data [J]. International Journal of Applied Earth Observation and Geoinformation, 2023, 120:103359. https://doi.org/10.1016/j.jag.2023.103359',
+        'JIA M., LI X., GONG Y., et al. Estimating natural disaster loss using improved daily night-time light data [J]. International Journal of Applied Earth Observation and Geoinformation, 2023, 120:103359. https://doi.org/10.1016/j.jag.2023.103359',
       description:
         'The angular normalization algorithm developed by this study can generate a stable time series of night-time light data with less fluctuation. The improved daily night-time light data provided a highly accurate estimate of power outage, a proxy of economic loss, after natural disasters.',
     },
@@ -42,14 +42,18 @@ const Paper: React.FC<BrowserRouterProps> = () => {
   ];
   return (
     <div>
-      <Row gutter={[16, 16]}>
-        <List split style={{ width: '100%' }}>
-          {listData.map((item, index) => (
-            <ListItem key={index} style={{ padding: '15px 25px' }}>
-              <ListItemMeta title={item.title} description={item.description} />
-            </ListItem>
-          ))}
-        </List>
+      <Row gutter={[16, 0]}>
+        <Col span={6} offset={2}></Col>
+        <Col span={6} offset={3}>
+          <List split style={{ width: '100%' }}>
+            {listData.map((item, index) => (
+              <ListItem key={index} style={{ padding: '15px 25px' }}>
+                <ListItemMeta title={item.title} description={item.description} />
+              </ListItem>
+            ))}
+          </List>
+        </Col>
+        <Col span={6} offset={2}></Col>
       </Row>
     </div>
   );

@@ -5,7 +5,7 @@ const result: IRouter[] = [
   {
     path: '/background',
     meta: {
-      title: 'Background',
+      title: 'BACKGROUND',
     },
     Component: lazy(() => import('pages/Background')),
   },

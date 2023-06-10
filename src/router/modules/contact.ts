@@ -5,7 +5,7 @@ const result: IRouter[] = [
   {
     path: '/contact',
     meta: {
-      title: 'Contact',
+      title: 'CONTACT',
     },
     Component: lazy(() => import('pages/Contact')),
   },

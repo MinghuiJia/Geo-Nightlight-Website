@@ -3,10 +3,9 @@
   font-size: 14px;
   .name {
     color: var(--td-text-color-primary);
-
-    p {
-      //text-indent: 2em;
-    }
+  }
+  p {
+    padding: 0 25px;
   }
 
   .regular {
@@ -16,5 +15,85 @@
 
   .logo {
     width: 180px;
+  }
+}
+
+/// 基本信息
+.userinfo {
+  .label {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 24px;
+    margin: 20px 0 6px;
+    font-size: 14px;
+    color: var(--td-text-color-placeholder);
+  }
+
+  .value {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 40px;
+    font-size: 14px;
+    color: var(--td-text-color-primary);
+  }
+}
+
+// 统计数据
+.statistics {
+  margin-top: 16px;
+  padding-top: 20px;
+}
+
+//  职位信息
+.postmsg {
+  background: var(--td-brand-color);
+  color: #fff;
+  .avatar {
+    width: 90px;
+    height: 90px;
+    font-size: 45px;
+    position: relative;
+    display: inline-flex;
+    background: var(--td-brand-color-2);
+    color: var(--td-text-color-brand);
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    border-radius: 50%;
+  }
+
+  .name {
+    line-height: 37px;
+    font-size: 20px;
+    margin-top: 36px;
+  }
+
+  .position {
+    line-height: 24px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+}
+
+// 团队
+.teams {
+  margin: 16px auto;
+  :global {
+    .t-list-item {
+      padding: 15px 0;
+    }
+  }
+}
+
+// 服务产品
+.product {
+  margin-top: 16px;
+  .logo {
+    width: 48px;
   }
 }

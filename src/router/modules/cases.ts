@@ -5,7 +5,7 @@ const result: IRouter[] = [
   {
     path: '/cases',
     meta: {
-      title: 'Use Cases',
+      title: 'USE CASES',
     },
     Component: lazy(() => import('pages/Cases')),
     // children: [

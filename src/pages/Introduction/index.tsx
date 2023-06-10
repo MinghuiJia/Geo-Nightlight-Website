@@ -6,8 +6,9 @@ import styles from './index.module.less';
 const User: React.FC<BrowserRouterProps> = () => {
   return (
     <div>
-      <Row gutter={[24, 24]}>
-        <Col xs={24} lg={24} xl={24}>
+      <Row gutter={[0, 0]}>
+        <Col span={6} offset={2}></Col>
+        <Col span={6} offset={3} xs={24} lg={24} xl={24}>
           <Card className={styles.welcome} bordered={false}>
             <p>
               GEO Night Light is the abbreviation of Night-Time Light Remote Sensing for Sustainable Development Goals,
@@ -32,7 +33,7 @@ const User: React.FC<BrowserRouterProps> = () => {
             </span>
           </Card>
         </Col>
-        <Col></Col>
+        <Col span={6} offset={2}></Col>
       </Row>
     </div>
   );
