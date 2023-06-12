@@ -134,17 +134,15 @@ const UseCases = () => (
                 Antakya, Samandag and Kirikhan has two noticeable drops after earthquakes hit on 6 February 6 and 20
                 February.
               </p>
-            </>
-          }
-          footer={
-            <>
-              <span>
-                <b>Users: UNHCR UNOCHA</b>
-              </span>
-              <br />
-              <span>
-                Access to the report is: <Link theme='primary'>https://www.unosat.org/products/3565</Link>
-              </span>
+              <>
+                <span>
+                  <b>Users: UNHCR UNOCHA</b>
+                </span>
+                <br />
+                <span>
+                  Access to the report is: <Link theme='primary'>https://www.unosat.org/products/3565</Link>
+                </span>
+              </>
             </>
           }
         ></Card>
@@ -227,12 +225,10 @@ const UseCases = () => (
                 mine of the Oyu Tolgoi copper mine started in 2016, the SOL of the industrial area increases, which
                 indicates that the construction may lead to the significant increase in night-time light brightness.
               </p>
+              <span>
+                <b>Users: Mongolian Geospatial Association</b>
+              </span>
             </>
-          }
-          footer={
-            <span>
-              <b>Users: Mongolian Geospatial Association</b>
-            </span>
           }
         ></Card>
         <Card
@@ -275,12 +271,10 @@ const UseCases = () => (
                 />
                 <div style={{ textAlign: 'center' }}>Changes of Night-time Light, Khartoum</div>
               </div>
+              <span>
+                <b>Users: UN Crisis Information and Operation Centre</b>
+              </span>
             </>
-          }
-          footer={
-            <span>
-              <b>Users: UN Crisis Information and Operation Centre</b>
-            </span>
           }
         ></Card>
       </Col>

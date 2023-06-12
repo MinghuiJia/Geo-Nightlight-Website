@@ -217,7 +217,8 @@ const Product = () => (
                 </Col>
               </Row>
               <div style={{ textAlign: 'center' }}>
-                SDGSAT-1 Imagery, Algiers left: panchromatic band image; right: multispectral image
+                SDGSAT-1 Imagery, Algiers <br />
+                left: panchromatic band image; right: multispectral image
               </div>
             </>
           }

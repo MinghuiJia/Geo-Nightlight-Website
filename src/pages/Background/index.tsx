@@ -80,7 +80,7 @@ const User: React.FC<BrowserRouterProps> = () => {
                     fit='cover'
                     style={{ width: '450px', height: '320px', backgroundColor: '#fff', margin: '0 auto' }}
                   />
-                  <div style={{ textAlign: 'center' }}>Night-time light changes during the war in Syria</div>
+                  <div style={{ textAlign: 'center' }}>Night-time Light Changes during the War in Syria</div>
                 </div>
                 <p>
                   In conclusion, night-time light provides valuable insights into urbanization dynamics, economic
