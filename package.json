@@ -43,7 +43,9 @@
     "vite-plugin-mock": "^2.9.6"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@reduxjs/toolkit": "^1.8.5",
+    "antd": "^5.11.5",
     "axios": "^1.2.0",
     "axios-jsonp": "^1.0.4",
     "classnames": "^2.3.1",
