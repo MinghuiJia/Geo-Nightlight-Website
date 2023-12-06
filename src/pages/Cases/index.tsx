@@ -10,13 +10,13 @@ import { Menu } from 'antd';
 
 type MenuItem = Required<MenuProps>['items'][number];
 const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/c/font_3451964_st9vlo26r7b.js',
+  scriptUrl: '//at.alicdn.com/t/c/font_3451964_fnbkt7y0qcn.js',
 });
 
 const keyToCard: Record<string, JSX.Element> = {
-  '1': <TurkeySyriaEqCard />,
-  '2': <SudanConfilctCard />,
-  '3': <MiningIndustryCard />,
+  sub1: <TurkeySyriaEqCard />,
+  sub2: <SudanConfilctCard />,
+  sub3: <MiningIndustryCard />,
 };
 
 function getItem(
@@ -36,12 +36,16 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Earthquake', 'sub1', <IconFont type='icon-dizhen' />, [getItem('Türkiye/Syria Earthquake', '1')]),
-  getItem('Conflict', 'sub2', <IconFont type='icon-chongtufenxi' />, [
-    getItem('Sudan Conflict', '2'),
-    // getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
-  ]),
-  getItem('Mongolia', 'sub3', <IconFont type='icon-mineral' />, [getItem('Mining Industry in Mongolia', '3')]),
+  // getItem('Earthquake', 'sub1', <IconFont type='icon-dizhen' />, [getItem('Türkiye/Syria Earthquake', '1')]),
+  // getItem('Conflict', 'sub2', <IconFont type='icon-chongtufenxi' />, [
+  //   getItem('Sudan Conflict', '2'),
+  //   // getItem('Submenu', 'sub3', null, [getItem('Option 7', '7'), getItem('Option 8', '8')]),
+  // ]),
+  // getItem('Mongolia', 'sub3', <IconFont type='icon-mineral' />, [getItem('Mining Industry in Mongolia', '3')]),
+
+  getItem('Türkiye/Syria Earthquake', 'sub1', <IconFont type='icon-dizhen' />),
+  getItem('Sudan Conflict', 'sub2', <IconFont type='icon-chongtufenxi' />),
+  getItem('Mining Industry in Mongolia', 'sub3', <IconFont type='icon-mineral' />),
 ];
 
 // submenu keys of first level
@@ -49,7 +53,7 @@ const rootSubmenuKeys = ['sub1', 'sub2', 'sub3'];
 
 const App: React.FC = () => {
   const [openKeys, setOpenKeys] = useState(['sub1']);
-  const [currKey, setCurrKey] = useState('1');
+  const [currKey, setCurrKey] = useState('sub1');
 
   const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -70,10 +74,9 @@ const App: React.FC = () => {
     keyPath: string[];
     domEvent: object;
   }) => {
-    const clickKey = keyPath[0];
+    // const clickKey = keyPath[0];
+    const clickKey = key;
     setCurrKey(clickKey);
-    console.log(typeof item);
-    console.log(typeof domEvent);
   };
   return (
     <div style={{ display: 'flex' }}>
@@ -81,7 +84,7 @@ const App: React.FC = () => {
         mode='inline'
         openKeys={openKeys}
         onOpenChange={onOpenChange}
-        defaultSelectedKeys={['1']}
+        defaultSelectedKeys={['sub1']}
         defaultOpenKeys={['sub1']}
         style={{ width: 286, minWidth: 286, maxWidth: 286, marginRight: 10 }}
         items={items}

@@ -47,7 +47,7 @@ const Learn: React.FC<BrowserRouterProps> = () => {
       course: 'Remote Sensing of Night-time Light and Its Applications (online)',
       training: 'CIFAL Shanghai International Training Centre',
       trainees: '49',
-      dates: '24 Sep 2021',
+      dates: '20 Oct 2022',
     },
     {
       lecturer: 'Xi Li',
