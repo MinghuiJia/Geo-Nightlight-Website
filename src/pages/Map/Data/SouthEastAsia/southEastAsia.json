@@ -1,0 +1,41 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "id": "01",
+            "properties": {
+                "name": "Events1",
+                "value": 23
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [101.85, 17.20]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "02",
+            "properties": {
+                "name": "Events2",
+                "value": 50
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [139.12, -5.30]
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "03",
+            "properties": {
+                "name": "Events3",
+                "value": 14
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [101.40, -0.42]
+            }
+        }
+    ]
+}
