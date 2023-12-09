@@ -4,9 +4,10 @@ import { GaodeMap, Mapbox } from '@antv/l7-maps';
 import { Scene, PolygonLayer, LineLayer, Popup, MouseLocation } from '@antv/l7';
 import { Slider } from 'antd';
 import type { SliderMarks } from 'antd/es/slider';
-import myJson from '../Data/world.json';
-import southAfricaJson from '../Data/southAfrica.json';
-import southEastAsiaJson from '../Data/southEastAsia.json';
+
+import myJson from '../Data/SouthAfrica/world.json';
+import southAfricaJson from '../Data/SouthAfrica/southAfrica.json';
+import southEastAsiaJson from '../Data/SouthAfrica/southEastAsia.json';
 
 const marks: SliderMarks = {
   2013: '2013',
@@ -62,10 +63,8 @@ const App: React.FC = () => {
       map: new Mapbox({
         style: 'light',
         center: [22, -15.8],
-        // zoom: 2,
         // style: 'dark',
         pitch: 0,
-        // center: [-96, 37.8],
         zoom: 3,
         token: 'pk.eyJ1Ijoiam1oMTk5OCIsImEiOiJjbHB2NnN6dGswMjJnMmtvOTU5cGNwdDN0In0.-D8QreNtfeSeuBN92vQQ1w',
       }),
@@ -130,11 +129,7 @@ const App: React.FC = () => {
 
   // 组件挂载时初始化数据
   useEffect(() => {
-    fetch('https://gw.alipayobjects.com/os/basement_prod/d36ad90e-3902-4742-b8a2-d93f7e5dafa2.json').then(
-      async (res) => {
-        setData(await res.json());
-      },
-    );
+    setData(myJson);
   }, []);
 
   const handleSliderChange = (value: number) => {
@@ -150,7 +145,6 @@ const App: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 5px 3px', width: '100%' }}>
       <Slider min={2013} max={2021} step={1} defaultValue={year} onChange={handleSliderChange} marks={marks} />
-      {/* <div style={{ minHeight: '500px' }} id='map'></div> */}
       <div style={{ minHeight: '500px', justifyContent: 'center', position: 'relative' }} id='map'></div>
     </div>
   );

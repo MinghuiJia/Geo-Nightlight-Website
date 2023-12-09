@@ -17,12 +17,6 @@ const marks: SliderMarks = {
   2019: '2019',
   2020: '2020',
   2021: '2021',
-  // 100: {
-  //   style: {
-  //     color: '#f50',
-  //   },
-  //   label: <strong>100°C</strong>,
-  // },
 };
 
 // const colors = ['#0A1FB2', '#02BEFF', '#FFB02A', '#FF7412', '#FF3417'];
@@ -124,7 +118,6 @@ const App: React.FC = () => {
         const div = DOM.create('div', 'info legend');
         const grades = [0, 10, 20, 30, 40, -999];
         const grades2 = [0, '10', '20', '30', '40', '50'];
-        // loop through our density intervals and generate a label with a colored square for each interval
 
         for (let i = 0; i < grades.length; i++) {
           if (i < grades.length - 1) {
@@ -159,11 +152,6 @@ const App: React.FC = () => {
     fetch('csv/launch_sites.csv').then(async (res) => {
       setData(await res.text());
     });
-    // fetch('https://gw.alipayobjects.com/os/basement_prod/9078fd36-ce8d-4ee2-91bc-605db8315fdf.csv').then(
-    //   async (res) => {
-    //     setData(await res.text());
-    //   },
-    // );
   }, []);
 
   const handleSliderChange = (value: number) => {
@@ -175,7 +163,6 @@ const App: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 5px 3px', width: '100%' }}>
       <Slider min={2013} max={2021} step={1} defaultValue={year} onChange={handleSliderChange} marks={marks} />
-      {/* <div style={{ minHeight: '500px' }} id='map'></div> */}
       <div style={{ minHeight: '500px', justifyContent: 'center', position: 'relative' }} id='map'></div>
     </div>
   );
