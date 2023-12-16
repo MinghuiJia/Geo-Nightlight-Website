@@ -147,7 +147,7 @@ const App: React.FC = () => {
   }, []);
 
   const handleSliderChange = (value: number) => {
-    setYear(value);
+    // setYear(value);
     if (value === 2012) setData(povertyJson2012);
     else if (value === 2013) setData(povertyJson2013);
     else if (value === 2014) setData(povertyJson2014);
