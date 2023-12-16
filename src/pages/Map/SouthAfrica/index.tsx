@@ -9,7 +9,20 @@ import myJson from '../Data/SouthAfrica/world.json';
 import southAfricaJson from '../Data/SouthAfrica/southAfrica.json';
 import southEastAsiaJson from '../Data/SouthAfrica/southEastAsia.json';
 
+import povertyJson2012 from '../Data/SouthAfrica/2012Poverty.json';
+import povertyJson2013 from '../Data/SouthAfrica/2013Poverty.json';
+import povertyJson2014 from '../Data/SouthAfrica/2014Poverty.json';
+import povertyJson2015 from '../Data/SouthAfrica/2015Poverty.json';
+import povertyJson2016 from '../Data/SouthAfrica/2016Poverty.json';
+import povertyJson2017 from '../Data/SouthAfrica/2017Poverty.json';
+import povertyJson2018 from '../Data/SouthAfrica/2018Poverty.json';
+import povertyJson2019 from '../Data/SouthAfrica/2019Poverty.json';
+import povertyJson2020 from '../Data/SouthAfrica/2020Poverty.json';
+import povertyJson2021 from '../Data/SouthAfrica/2021Poverty.json';
+import povertyJson2022 from '../Data/SouthAfrica/2022Poverty.json';
+
 const marks: SliderMarks = {
+  2012: '2012',
   2013: '2013',
   2014: '2014',
   2015: '2015',
@@ -19,6 +32,7 @@ const marks: SliderMarks = {
   2019: '2019',
   2020: '2020',
   2021: '2021',
+  2022: '2022',
   // 100: {
   //   style: {
   //     color: '#f50',
@@ -27,21 +41,21 @@ const marks: SliderMarks = {
   // },
 };
 
-interface dataItem {
-  type: string;
-  id: string;
-  properties: object;
-  geometry: object;
-}
+// interface dataItem {
+//   type: string;
+//   id: string;
+//   properties: object;
+//   geometry: object;
+// }
 
-interface dataJson {
-  type: string;
-  features: dataItem[];
-}
+// interface dataJson {
+//   type: string;
+//   features: dataItem[];
+// }
 
 const App: React.FC = () => {
-  const [year, setYear] = useState(2013);
-  const [data, setData] = useState<dataJson>({} as dataJson);
+  const [year, setYear] = useState(2012);
+  const [data, setData] = useState<typeof povertyJson2012>({} as typeof povertyJson2012);
   useEffect(() => {
     // console.log(data);
     // const scene = new Scene({
@@ -91,7 +105,7 @@ const App: React.FC = () => {
       const layer = new PolygonLayer({})
         .source(data)
         .scale('density', {
-          type: 'quantile',
+          type: 'linear',
         })
         .color('density', color)
         .shape('fill')
@@ -129,22 +143,30 @@ const App: React.FC = () => {
 
   // 组件挂载时初始化数据
   useEffect(() => {
-    setData(myJson);
+    setData(povertyJson2012);
   }, []);
 
   const handleSliderChange = (value: number) => {
     setYear(value);
-    if (value === 2013) setData(myJson);
-    else if (value === 2014) setData(southAfricaJson);
-    else if (value === 2015) setData(southEastAsiaJson);
-    else setData({} as dataJson);
+    if (value === 2012) setData(povertyJson2012);
+    else if (value === 2013) setData(povertyJson2013);
+    else if (value === 2014) setData(povertyJson2014);
+    else if (value === 2015) setData(povertyJson2015);
+    else if (value === 2016) setData(povertyJson2016);
+    else if (value === 2017) setData(povertyJson2017);
+    else if (value === 2018) setData(povertyJson2018);
+    else if (value === 2019) setData(povertyJson2019);
+    else if (value === 2020) setData(povertyJson2020);
+    else if (value === 2021) setData(povertyJson2021);
+    else if (value === 2022) setData(povertyJson2022);
+    else setData({} as typeof povertyJson2012);
     // // TODO: 在这里根据年份更新地图数据
     // // 请根据自己的需求来实现数据的更新逻辑
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 5px 3px', width: '100%' }}>
-      <Slider min={2013} max={2021} step={1} defaultValue={year} onChange={handleSliderChange} marks={marks} />
+      <Slider min={2012} max={2022} step={1} defaultValue={year} onChange={handleSliderChange} marks={marks} />
       <div style={{ minHeight: '500px', justifyContent: 'center', position: 'relative' }} id='map'></div>
     </div>
   );
