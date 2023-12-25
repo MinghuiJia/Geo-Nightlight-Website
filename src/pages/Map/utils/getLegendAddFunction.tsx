@@ -7,8 +7,8 @@ const southAfricaLegendAdd = () => {
   const div = DOM.create('div');
   div.classList.add(styles.legend);
   div.classList.add(styles.info);
-  const grades = [0, 10, 20, 30, 40, -999];
-  const grades2 = [0, '10', '20', '30', '40', '50'];
+  const grades = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, -999];
+  const grades2 = [0, '10%', '20%', '30%', '40%', '50%', '60%', '70%', '80%', '90%', '100%'];
 
   for (let i = 0; i < grades.length; i++) {
     if (i < grades.length - 1) {
@@ -17,7 +17,7 @@ const southAfricaLegendAdd = () => {
       div.innerHTML += `<i style=" width: 110px; margin-left: 10px; background: ${getSouthAfricaColor(
         grades[i] + 1,
         SouthAfricaColors,
-      )} ">Economic Losses</i>`;
+      )} ">Poverty Rate</i>`;
     }
   }
   div.innerHTML += '<br>';

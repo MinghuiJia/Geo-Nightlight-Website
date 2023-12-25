@@ -44,8 +44,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
-    "@antv/l7": "^2.20.5",
+    "@antv/l7": "^2.20.10",
     "@antv/l7-maps": "^2.20.5",
+    "@antv/larkmap": "^1.4.11",
     "@reduxjs/toolkit": "^1.8.5",
     "antd": "^5.11.5",
     "axios": "^1.2.0",

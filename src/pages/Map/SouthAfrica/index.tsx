@@ -1,76 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { LarkMap } from '@antv/larkmap';
 import { Mapbox } from '@antv/l7-maps';
-import { Scene, PolygonLayer, Popup, MouseLocation, Control } from '@antv/l7';
 import { Slider } from 'antd';
 import type { SliderMarks } from 'antd/es/slider';
-import { SouthAfricaColors } from '../utils/legendColor';
-import { sliderMarks } from '../utils/sliderMarks';
-import { southAfricaLegendAdd } from '../utils/getLegendAddFunction';
 
-import povertyJson2012 from '../Data/SouthAfrica/allYearsPoverty.json';
+import PovertyComponent from './Poverty';
+import { sliderMarks } from '../utils/sliderMarks';
+
+/**
+ * 实例化
+ */
+const mapInstance = new Mapbox({
+  style: 'light',
+  center: [15, -20.8],
+  // style: 'dark',
+  pitch: 0,
+  zoom: 3.3,
+  token: 'pk.eyJ1Ijoiam1oMTk5OCIsImEiOiJjbHB2NnN6dGswMjJnMmtvOTU5cGNwdDN0In0.-D8QreNtfeSeuBN92vQQ1w',
+});
 
 const marks: SliderMarks = sliderMarks;
 
 const App: React.FC = () => {
   const [showKey, setShowKey] = useState<string>('density2012');
-
-  useEffect(() => {
-    const scene = new Scene({
-      id: 'map',
-      map: new Mapbox({
-        style: 'light',
-        center: [22, -20.8],
-        // style: 'dark',
-        pitch: 0,
-        zoom: 3.3,
-        token: 'pk.eyJ1Ijoiam1oMTk5OCIsImEiOiJjbHB2NnN6dGswMjJnMmtvOTU5cGNwdDN0In0.-D8QreNtfeSeuBN92vQQ1w',
-      }),
-      logoVisible: false,
-    });
-
-    scene.on('loaded', () => {
-      // 增加鼠标位置显示
-      const mouseLocation = new MouseLocation({
-        position: 'bottomright',
-      });
-      scene.addControl(mouseLocation);
-
-      const layer = new PolygonLayer({})
-        .source(povertyJson2012)
-        .scale(showKey, {
-          type: 'linear',
-        })
-        .color(showKey, SouthAfricaColors)
-        .shape('fill')
-        .active(true);
-
-      layer.on('mousemove', (e) => {
-        const popup = new Popup({
-          offsets: [0, 0],
-          closeButton: true,
-        })
-          .setLnglat(e.lngLat)
-          .setHTML(`<span>${e.feature.properties.name}: ${e.feature.properties[showKey]}</span>`);
-        scene.addPopup(popup);
-      });
-
-      scene.addLayer(layer);
-
-      const legend = new Control({ position: 'bottomleft' });
-      legend.onAdd = southAfricaLegendAdd;
-
-      scene.addControl(legend);
-    });
-    return () => {
-      scene.destroy();
-    };
-  }, [showKey]);
-
-  // // 组件挂载时初始化数据
-  // useEffect(() => {
-  //   setData(povertyJson2012);
-  // }, []);
 
   const handleSliderChange = (value: number) => {
     if (value === 2012) setShowKey('density2012');
@@ -90,7 +44,9 @@ const App: React.FC = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 5px 3px', width: '100%' }}>
       <Slider min={2012} max={2022} step={1} defaultValue={2012} onChange={handleSliderChange} marks={marks} />
-      <div style={{ minHeight: '500px', justifyContent: 'center', position: 'relative' }} id='map'></div>
+      <LarkMap map={mapInstance} style={{ minHeight: '500px', justifyContent: 'center', position: 'relative' }}>
+        <PovertyComponent showKey={showKey} />
+      </LarkMap>
     </div>
   );
 };
