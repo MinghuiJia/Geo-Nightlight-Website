@@ -8,22 +8,13 @@ import { SouthAfricaColors } from '../utils/legendColor';
 import { sliderMarks } from '../utils/sliderMarks';
 import { southAfricaLegendAdd } from '../utils/getLegendAddFunction';
 
-import povertyJson2012 from '../Data/SouthAfrica/2012Poverty.json';
-import povertyJson2013 from '../Data/SouthAfrica/2013Poverty.json';
-import povertyJson2014 from '../Data/SouthAfrica/2014Poverty.json';
-import povertyJson2015 from '../Data/SouthAfrica/2015Poverty.json';
-import povertyJson2016 from '../Data/SouthAfrica/2016Poverty.json';
-import povertyJson2017 from '../Data/SouthAfrica/2017Poverty.json';
-import povertyJson2018 from '../Data/SouthAfrica/2018Poverty.json';
-import povertyJson2019 from '../Data/SouthAfrica/2019Poverty.json';
-import povertyJson2020 from '../Data/SouthAfrica/2020Poverty.json';
-import povertyJson2021 from '../Data/SouthAfrica/2021Poverty.json';
-import povertyJson2022 from '../Data/SouthAfrica/2022Poverty.json';
+import povertyJson2012 from '../Data/SouthAfrica/allYearsPoverty.json';
 
 const marks: SliderMarks = sliderMarks;
 
 const App: React.FC = () => {
-  const [data, setData] = useState<typeof povertyJson2012>({} as typeof povertyJson2012);
+  const [showKey, setShowKey] = useState<string>('density2012');
+
   useEffect(() => {
     const scene = new Scene({
       id: 'map',
@@ -46,15 +37,13 @@ const App: React.FC = () => {
       scene.addControl(mouseLocation);
 
       const layer = new PolygonLayer({})
-        .source(data)
-        .scale('density', {
+        .source(povertyJson2012)
+        .scale(showKey, {
           type: 'linear',
         })
-        .color('density', SouthAfricaColors)
+        .color(showKey, SouthAfricaColors)
         .shape('fill')
         .active(true);
-
-      scene.addLayer(layer);
 
       layer.on('mousemove', (e) => {
         const popup = new Popup({
@@ -62,9 +51,11 @@ const App: React.FC = () => {
           closeButton: true,
         })
           .setLnglat(e.lngLat)
-          .setHTML(`<span>${e.feature.properties.name}: ${e.feature.properties.density}</span>`);
+          .setHTML(`<span>${e.feature.properties.name}: ${e.feature.properties[showKey]}</span>`);
         scene.addPopup(popup);
       });
+
+      scene.addLayer(layer);
 
       const legend = new Control({ position: 'bottomleft' });
       legend.onAdd = southAfricaLegendAdd;
@@ -74,26 +65,26 @@ const App: React.FC = () => {
     return () => {
       scene.destroy();
     };
-  }, [data]);
+  }, [showKey]);
 
-  // 组件挂载时初始化数据
-  useEffect(() => {
-    setData(povertyJson2012);
-  }, []);
+  // // 组件挂载时初始化数据
+  // useEffect(() => {
+  //   setData(povertyJson2012);
+  // }, []);
 
   const handleSliderChange = (value: number) => {
-    if (value === 2012) setData(povertyJson2012);
-    else if (value === 2013) setData(povertyJson2013);
-    else if (value === 2014) setData(povertyJson2014);
-    else if (value === 2015) setData(povertyJson2015);
-    else if (value === 2016) setData(povertyJson2016);
-    else if (value === 2017) setData(povertyJson2017);
-    else if (value === 2018) setData(povertyJson2018);
-    else if (value === 2019) setData(povertyJson2019);
-    else if (value === 2020) setData(povertyJson2020);
-    else if (value === 2021) setData(povertyJson2021);
-    else if (value === 2022) setData(povertyJson2022);
-    else setData({} as typeof povertyJson2012);
+    if (value === 2012) setShowKey('density2012');
+    else if (value === 2013) setShowKey('density2013');
+    else if (value === 2014) setShowKey('density2014');
+    else if (value === 2015) setShowKey('density2015');
+    else if (value === 2016) setShowKey('density2016');
+    else if (value === 2017) setShowKey('density2017');
+    else if (value === 2018) setShowKey('density2018');
+    else if (value === 2019) setShowKey('density2019');
+    else if (value === 2020) setShowKey('density2020');
+    else if (value === 2021) setShowKey('density2021');
+    else if (value === 2022) setShowKey('density2022');
+    else setShowKey('density2012');
   };
 
   return (
