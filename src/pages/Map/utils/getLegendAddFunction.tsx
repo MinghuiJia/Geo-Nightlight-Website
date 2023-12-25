@@ -35,8 +35,8 @@ const southEastAsiaLegendAdd = () => {
   const div = DOM.create('div');
   div.classList.add(styles.legend);
   div.classList.add(styles.info);
-  const grades = [0, 10, 20, 30, 40, -999];
-  const grades2 = [0, '10', '20', '30', '40', '50'];
+  const grades = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, -999];
+  const grades2 = [0, '5亿', '10亿', '15亿', '20亿', '25亿', '30亿', '35亿', '40亿', '45亿', '50亿'];
 
   for (let i = 0; i < grades.length; i++) {
     if (i < grades.length - 1) {

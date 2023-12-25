@@ -13,11 +13,16 @@ const SouthAfricaColors = [
 // const SouthAfricaColors = ['rgb(8, 225, 8)', 'rgb(179, 236, 10)', 'rgb(225, 193, 12)', 'rgb(243, 115, 10)', 'rgb(237, 52, 28)'];
 
 const SouthEastAsiaColors = [
+  'rgb(8, 255, 52)',
   'rgb(8, 225, 8)',
-  'rgb(179, 236, 10)',
+  'rgb(174, 239, 21)',
+  'rgb(210, 236, 10)',
+  'rgb(225, 211, 12)',
   'rgb(225, 193, 12)',
   'rgb(243, 115, 10)',
-  'rgb(237, 52, 28)',
+  'rgb(243, 86, 10)',
+  'rgb(243, 41, 10)',
+  'rgb(243, 12, 12)',
 ];
 // const SouthEastAsiaColors = ['#0A1FB2', '#02BEFF', '#FFB02A', '#FF7412', '#FF3417'];
 export { SouthAfricaColors, SouthEastAsiaColors };
