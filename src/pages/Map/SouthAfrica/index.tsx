@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-import { GaodeMap, Mapbox } from '@antv/l7-maps';
-import { Scene, PolygonLayer, LineLayer, Popup, MouseLocation } from '@antv/l7';
+import { Mapbox } from '@antv/l7-maps';
+import { Scene, PolygonLayer, Popup, MouseLocation, Control, DOM } from '@antv/l7';
 import { Slider } from 'antd';
 import type { SliderMarks } from 'antd/es/slider';
-
-import myJson from '../Data/SouthAfrica/world.json';
-import southAfricaJson from '../Data/SouthAfrica/southAfrica.json';
-import southEastAsiaJson from '../Data/SouthAfrica/southEastAsia.json';
 
 import povertyJson2012 from '../Data/SouthAfrica/2012Poverty.json';
 import povertyJson2013 from '../Data/SouthAfrica/2013Poverty.json';
@@ -33,45 +29,69 @@ const marks: SliderMarks = {
   2020: '2020',
   2021: '2021',
   2022: '2022',
-  // 100: {
+  // 2022: {
   //   style: {
-  //     color: '#f50',
+  //     color: '#000',
   //   },
-  //   label: <strong>100°C</strong>,
+  //   label: <strong>2022</strong>,
   // },
 };
+const colors = [
+  'rgb(255,255,217)',
+  'rgb(237,248,177)',
+  'rgb(199,233,180)',
+  'rgb(127,205,187)',
+  'rgb(65,182,196)',
+  'rgb(29,145,192)',
+  'rgb(34,94,168)',
+  'rgb(12,44,132)',
+];
+// const colors = ['rgb(8, 225, 8)', 'rgb(179, 236, 10)', 'rgb(225, 193, 12)', 'rgb(243, 115, 10)', 'rgb(237, 52, 28)'];
 
-// interface dataItem {
-//   type: string;
-//   id: string;
-//   properties: object;
-//   geometry: object;
-// }
+const styleElement = document.createElement('style');
+styleElement.textContent = `
+            .info {
+                padding: 6px 8px;
+                font: 14px/16px Arial, Helvetica, sans-serif;
+                background: white;
+                background: rgba(255,255,255,0.8);
+                box-shadow: 0 0 15px rgba(0,0,0,0.2);
+                border-radius: 5px;
+            }
+            .info h4 {
+                margin: 0 0 5px;
+                color: #777;
+            }
+              .legend {
+                line-height: 18px;
+                color: #555;
+            }
+            .legend i {
+                width: 40px;
+                height: 20px;
+                float: left;
+                margin-top: 5px;
+                margin-right: 0px;
+                opacity: 1;
+                color: #000;
+                font-weight: bold;
+            }
+            `;
+// 将<style>元素添加到<head>元素中，实现样式注入
+document.head.appendChild(styleElement);
 
-// interface dataJson {
-//   type: string;
-//   features: dataItem[];
-// }
+function getColor(d: number, color: string[]) {
+  if (d > 40) return color[4];
+  if (d > 30) return color[3];
+  if (d > 20) return color[2];
+  if (d > 10) return color[1];
+  if (d > 0) return color[0];
+  return 'rgba(0,0,0,0)';
+}
 
 const App: React.FC = () => {
-  const [year, setYear] = useState(2012);
   const [data, setData] = useState<typeof povertyJson2012>({} as typeof povertyJson2012);
   useEffect(() => {
-    // console.log(data);
-    // const scene = new Scene({
-    //   id: 'map',
-    //   map: new GaodeMap({
-    //     // style: 'light',
-    //     // center: [22, 4.8],
-    //     // zoom: 2,
-    //     style: 'dark',
-    //     pitch: 0,
-    //     center: [-96, 37.8],
-    //     zoom: 3,
-    //     token: '3de8b0156585dd306f5f0f1d0cf7f620',
-    //   }),
-    //   logoVisible: false,
-    // });
     const scene = new Scene({
       id: 'map',
       map: new Mapbox({
@@ -92,39 +112,16 @@ const App: React.FC = () => {
       });
       scene.addControl(mouseLocation);
 
-      const color = [
-        'rgb(255,255,217)',
-        'rgb(237,248,177)',
-        'rgb(199,233,180)',
-        'rgb(127,205,187)',
-        'rgb(65,182,196)',
-        'rgb(29,145,192)',
-        'rgb(34,94,168)',
-        'rgb(12,44,132)',
-      ];
       const layer = new PolygonLayer({})
         .source(data)
         .scale('density', {
           type: 'linear',
         })
-        .color('density', color)
+        .color('density', colors)
         .shape('fill')
         .active(true);
 
-      const layer2 = new LineLayer({
-        zIndex: 2,
-      })
-        .source(data)
-        .color('#fff')
-        .active(true)
-        .size(1)
-        .style({
-          lineType: 'dash',
-          dashArray: [2, 2],
-        });
-
       scene.addLayer(layer);
-      scene.addLayer(layer2);
 
       layer.on('mousemove', (e) => {
         const popup = new Popup({
@@ -135,6 +132,35 @@ const App: React.FC = () => {
           .setHTML(`<span>${e.feature.properties.name}: ${e.feature.properties.density}</span>`);
         scene.addPopup(popup);
       });
+
+      const legend = new Control({ position: 'bottomleft' });
+      legend.onAdd = () => {
+        const div = DOM.create('div', 'info legend');
+        const grades = [0, 10, 20, 30, 40, -999];
+        const grades2 = [0, '10', '20', '30', '40', '50'];
+
+        for (let i = 0; i < grades.length; i++) {
+          if (i < grades.length - 1) {
+            div.innerHTML += `<i style="background: ${getColor(grades[i] + 1, colors)}"></i>`;
+          } else {
+            div.innerHTML += `<i style=" width: 110px; margin-left: 10px; background: ${getColor(
+              grades[i] + 1,
+              colors,
+            )} ">Economic Losses</i>`;
+          }
+        }
+        div.innerHTML += '<br>';
+        for (let i = 0; i < grades2.length; i++) {
+          if (i < grades.length - 1) {
+            div.innerHTML += `<i>${grades2[i]}</>`;
+          } else {
+            div.innerHTML += `<i style=" width: 110px;">${grades2[i]}</>`;
+          }
+        }
+        return div;
+      };
+
+      scene.addControl(legend);
     });
     return () => {
       scene.destroy();
@@ -147,7 +173,6 @@ const App: React.FC = () => {
   }, []);
 
   const handleSliderChange = (value: number) => {
-    // setYear(value);
     if (value === 2012) setData(povertyJson2012);
     else if (value === 2013) setData(povertyJson2013);
     else if (value === 2014) setData(povertyJson2014);
@@ -160,13 +185,11 @@ const App: React.FC = () => {
     else if (value === 2021) setData(povertyJson2021);
     else if (value === 2022) setData(povertyJson2022);
     else setData({} as typeof povertyJson2012);
-    // // TODO: 在这里根据年份更新地图数据
-    // // 请根据自己的需求来实现数据的更新逻辑
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 5px 3px', width: '100%' }}>
-      <Slider min={2012} max={2022} step={1} defaultValue={year} onChange={handleSliderChange} marks={marks} />
+      <Slider min={2012} max={2022} step={1} defaultValue={2012} onChange={handleSliderChange} marks={marks} />
       <div style={{ minHeight: '500px', justifyContent: 'center', position: 'relative' }} id='map'></div>
     </div>
   );
