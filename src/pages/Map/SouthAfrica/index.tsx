@@ -42,7 +42,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 5px 3px', width: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', padding: '0 10px 10px 3px', width: '100%' }}>
       <Slider min={2012} max={2022} step={1} defaultValue={2012} onChange={handleSliderChange} marks={marks} />
       <LarkMap map={mapInstance} style={{ minHeight: '500px', justifyContent: 'center', position: 'relative' }}>
         <PovertyComponent showKey={showKey} />
