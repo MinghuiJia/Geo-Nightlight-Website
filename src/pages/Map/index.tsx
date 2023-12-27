@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import SouthAfricaMap from './SouthAfrica';
-import SouthEastAsiaMap from './SouthEastAsia';
+import PovertyMap from './Poverty';
+import DisasterMap from './Disaster';
+import ElectrificationMap from './Electrification';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createFromIconfontCN } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
@@ -9,12 +10,13 @@ import { Menu } from 'antd';
 
 type MenuItem = Required<MenuProps>['items'][number];
 const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/c/font_3451964_fnbkt7y0qcn.js',
+  scriptUrl: '//at.alicdn.com/t/c/font_3451964_kdwfe7psduf.js',
 });
 
 const keyToCard: Record<string, JSX.Element> = {
-  sub1: <SouthAfricaMap />,
-  sub2: <SouthEastAsiaMap />,
+  sub1: <PovertyMap />,
+  sub2: <ElectrificationMap />,
+  sub3: <DisasterMap />,
 };
 
 function getItem(
@@ -34,12 +36,13 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Application of South Africa', 'sub1', <IconFont type='icon-dizhen' />),
-  getItem('Application of South East Asia', 'sub2', <IconFont type='icon-chongtufenxi' />),
+  getItem('Application of Poverty', 'sub1', <IconFont type='icon-pinkuncun-' />),
+  getItem('Application of Electrification', 'sub2', <IconFont type='icon-dianli' />),
+  getItem('Application of Disaster', 'sub3', <IconFont type='icon-dizhizaihai' />),
 ];
 
 // submenu keys of first level
-const rootSubmenuKeys = ['sub1', 'sub2'];
+const rootSubmenuKeys = ['sub1', 'sub2', 'sub3'];
 
 const App: React.FC = () => {
   const [openKeys, setOpenKeys] = useState(['sub1']);

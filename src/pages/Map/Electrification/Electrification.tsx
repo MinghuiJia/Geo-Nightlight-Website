@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 import { useScene } from '@antv/larkmap';
 import { PolygonLayer, Popup, MouseLocation, Control } from '@antv/l7';
 
-import povertyJson from '../Data/SouthAfrica/allYearsPoverty.json';
+import electrificationJson from '../Data/SouthAfrica/allYearsElectrification.json';
 import { SouthAfricaColors } from '../utils/legendColor';
-import { southAfricaLegendAdd } from '../utils/getLegendAddFunction';
+import { electrificationLegendAdd } from '../utils/getLegendAddFunction';
 
 interface Props {
   showKey: string;
@@ -20,7 +20,7 @@ const App: React.FC<Props> = ({ showKey }) => {
     scene.addControl(mouseLocation);
 
     const legend = new Control({ position: 'bottomleft' });
-    legend.onAdd = southAfricaLegendAdd;
+    legend.onAdd = electrificationLegendAdd;
 
     scene.addControl(legend);
     return () => {
@@ -31,7 +31,7 @@ const App: React.FC<Props> = ({ showKey }) => {
   useEffect(() => {
     scene.removeAllLayer();
     const layer = new PolygonLayer({})
-      .source(povertyJson)
+      .source(electrificationJson)
       .scale(showKey, {
         type: 'linear',
       })
