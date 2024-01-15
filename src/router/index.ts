@@ -38,7 +38,7 @@ export interface IRouter {
 const routes: IRouter[] = [
   {
     path: '/',
-    redirect: '/background',
+    redirect: '/introduction',
   },
 ];
 

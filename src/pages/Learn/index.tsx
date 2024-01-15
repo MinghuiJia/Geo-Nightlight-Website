@@ -1,5 +1,6 @@
 import React, { memo, useMemo } from 'react';
-import { Row, Col, Button, List, Card, Table } from 'tdesign-react';
+import { Row, Col, Button, List, Card } from 'tdesign-react';
+import { Table } from 'antd';
 import { IconFont } from 'tdesign-icons-react';
 import { BrowserRouterProps } from 'react-router-dom';
 
@@ -9,35 +10,42 @@ const Learn: React.FC<BrowserRouterProps> = () => {
   const columns = [
     {
       title: 'Course',
-      colKey: 'course',
+      dataIndex: 'course',
       align: 'center',
     },
     {
       title: 'Lecturer',
-      colKey: 'lecturer',
+      dataIndex: 'lecturer',
       align: 'center',
     },
     {
       title: 'Training platform',
-      colKey: 'training',
+      dataIndex: 'training',
       align: 'center',
     },
     {
       title: 'Number of trainees',
-      colKey: 'trainees',
+      dataIndex: 'trainees',
       align: 'center',
     },
     {
       title: 'Dates',
-      colKey: 'dates',
+      dataIndex: 'dates',
       align: 'center',
+      render: (text: string) => (
+        <div>
+          {text.split(',').map((item: string, index: number) => (
+            <div key={index}>{item.trim()}</div>
+          ))}
+        </div>
+      ),
     },
   ] as any;
 
   const data = [
     {
       lecturer: 'Xi Li & Ziying Fan',
-      course: 'night-time light and its application in sustainable development (online)',
+      course: 'Night-time light and its application in sustainable development (online)',
       training: 'Belt Road Geospatial Training Centre',
       trainees: '100',
       dates: '27 Nov 2022, 29 Nov 2022, 2 Dec 2022',
@@ -55,6 +63,14 @@ const Learn: React.FC<BrowserRouterProps> = () => {
       training: 'Wuhan Research Institute of Posts and Telecommunications; Ministry of Commerce of China',
       trainees: '10',
       dates: '1 Mar 2023',
+    },
+    {
+      lecturer: 'Xi Li & Samir Belabbes',
+      course: 'Training workshop on Remote Sensing of Night-Time Light',
+      training:
+        'Wuhan University State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing (LISMARS)',
+      trainees: '36',
+      dates: '13 Oct 2023, 14 Oct 2023',
     },
   ] as any;
 
@@ -82,7 +98,7 @@ const Learn: React.FC<BrowserRouterProps> = () => {
             }
             header
           >
-            <Table rowKey='key' columns={columns} data={data} bordered />
+            <Table rowKey='key' columns={columns} dataSource={data} tableLayout='fixed' pagination={false} bordered />
           </Card>
         </Col>
         <Col xs={12} lg={12} xl={3}>

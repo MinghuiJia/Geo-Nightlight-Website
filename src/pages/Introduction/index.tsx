@@ -9,7 +9,7 @@ import { Menu } from 'antd';
 
 type MenuItem = Required<MenuProps>['items'][number];
 const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/c/font_3451964_fnbkt7y0qcn.js',
+  scriptUrl: '//at.alicdn.com/t/c/font_3451964_nm2d0dvxwuf.js',
 });
 
 const keyToCard: Record<string, JSX.Element> = {
@@ -34,8 +34,8 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Background', 'sub1', <IconFont type='icon-laiyuanfenxi' />),
-  getItem('About Project', 'sub2', <IconFont type='icon-chanpin' />),
+  getItem('Background', 'sub1', <IconFont type='icon-jiaoyubeijing' />),
+  getItem('About Project', 'sub2', <IconFont type='icon-about' />),
 ];
 
 // submenu keys of first level
