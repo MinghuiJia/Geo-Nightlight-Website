@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DataSource from './Source/DataSource';
+import DataSource from './Source';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createFromIconfontCN } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
@@ -33,7 +33,7 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem('Data Source', 'sub1', <IconFont type='icon-laiyuanfenxi' />),
-  getItem('Data Products', 'sub2', <IconFont type='icon-chanpin' />),
+  getItem('Data Processed', 'sub2', <IconFont type='icon-chanpin' />),
 ];
 
 // submenu keys of first level

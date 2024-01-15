@@ -1,42 +1,87 @@
-import React, { memo } from 'react';
-import { Row, Col, Button, List, Card, Link } from 'tdesign-react';
-import { BrowserRouterProps } from 'react-router-dom';
-import styles from './index.module.less';
+import React, { useState } from 'react';
+import Background from './Background';
+import About from './AboutProject';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { createFromIconfontCN } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Menu } from 'antd';
 
-const User: React.FC<BrowserRouterProps> = () => {
+type MenuItem = Required<MenuProps>['items'][number];
+const IconFont = createFromIconfontCN({
+  scriptUrl: '//at.alicdn.com/t/c/font_3451964_fnbkt7y0qcn.js',
+});
+
+const keyToCard: Record<string, JSX.Element> = {
+  sub1: <Background />,
+  sub2: <About />,
+};
+
+function getItem(
+  label: React.ReactNode,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+  type?: 'group',
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  } as MenuItem;
+}
+
+const items: MenuItem[] = [
+  getItem('Background', 'sub1', <IconFont type='icon-laiyuanfenxi' />),
+  getItem('About Project', 'sub2', <IconFont type='icon-chanpin' />),
+];
+
+// submenu keys of first level
+const rootSubmenuKeys = ['sub1', 'sub2'];
+
+const App: React.FC = () => {
+  const [openKeys, setOpenKeys] = useState(['sub1']);
+  const [currKey, setCurrKey] = useState('sub1');
+
+  const onOpenChange: MenuProps['onOpenChange'] = (keys) => {
+    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
+    if (latestOpenKey && rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
+      setOpenKeys(keys);
+    } else {
+      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+    }
+  };
+  const itemClicked = ({
+    item,
+    key,
+    keyPath,
+    domEvent,
+  }: {
+    item: object;
+    key: string;
+    keyPath: string[];
+    domEvent: object;
+  }) => {
+    const clickKey = keyPath[0];
+    setCurrKey(clickKey);
+  };
   return (
-    <div>
-      <Row gutter={[0, 0]}>
-        <Col span={6} offset={2}></Col>
-        <Col span={6} offset={3} xs={24} lg={24} xl={24}>
-          <Card className={styles.welcome} bordered={false}>
-            <p>
-              GEO Night Light is the abbreviation of Night-Time Light Remote Sensing for Sustainable Development Goals,
-              which is a project of Group on Earth Observations (GEO). In 2019, GEO Night Light was listed as a
-              Community Activity under GEO Work Programme 2020-2022, and then it was listed as a Pilot Initiative under
-              GEO Work Programme 2023-2025.
-            </p>
-            <p>
-              Satellite-observed night light images are able to reflect spatiotemporal patterns of socioeconomic
-              dynamics especially for the regions where statistical data is difficult to access. GEO Night Light focuses
-              on several socioeconomic dimensions such as poverty, electrification, regional inequality, urbanization
-              and light pollution as well as emergency mapping activities using night-time light imagery combined with
-              other satellite/GIS data sources.
-            </p>
-            <p>
-              Currently, the participant GEO members of this project includes China, United Nations Satellite Centre
-              (UNOSAT) and Uzbekistan. The engaged institutes are Wuhan University, United Nations Satellite Centre
-              (UNOSAT), Sun Yat-sen University and Uzbekistan Space Agency.
-            </p>
-            <span>
-              GEO Work Programme 2023-2025: <Link theme='primary'>https://earthobservations.org/geo_wp_23_25.php</Link>
-            </span>
-          </Card>
-        </Col>
-        <Col span={6} offset={2}></Col>
-      </Row>
+    <div style={{ display: 'flex' }}>
+      <Menu
+        mode='inline'
+        openKeys={openKeys}
+        onOpenChange={onOpenChange}
+        defaultSelectedKeys={['sub1']}
+        defaultOpenKeys={['sub1']}
+        style={{ width: 286, minWidth: 286, maxWidth: 286, marginRight: 10 }}
+        items={items}
+        onClick={itemClicked}
+      />
+      <div>{keyToCard[currKey]}</div>
     </div>
   );
 };
 
-export default memo(User);
+export default App;

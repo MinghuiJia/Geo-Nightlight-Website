@@ -1,7 +1,6 @@
 import React, { lazy } from 'react';
 import { BrowserRouterProps } from 'react-router-dom';
 import otherRoutes from './modules/others';
-import background from './modules/background';
 import introduction from './modules/introduction';
 import data from './modules/data';
 import paper from './modules/paper';
@@ -45,14 +44,13 @@ const routes: IRouter[] = [
 
 const allRoutes = [
   ...routes,
-  ...background,
   ...introduction,
   ...data,
-  ...paper,
+  ...map,
   ...cases,
+  ...paper,
   ...learn,
   ...contact,
-  ...map,
   ...otherRoutes,
 ];
 
