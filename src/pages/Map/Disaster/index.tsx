@@ -18,6 +18,8 @@ const mapInstance = new Mapbox({
   // style: 'dark',
   pitch: 0,
   zoom: 3,
+  dragPan: false,
+  scrollZoom: false,
   token: 'pk.eyJ1Ijoiam1oMTk5OCIsImEiOiJjbHB2NnN6dGswMjJnMmtvOTU5cGNwdDN0In0.-D8QreNtfeSeuBN92vQQ1w',
 });
 

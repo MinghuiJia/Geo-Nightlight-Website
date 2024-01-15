@@ -49,9 +49,11 @@ const App: React.FC<Props> = ({ showKey }) => {
       const popup = new Popup({
         offsets: [0, 0],
         closeButton: true,
+        closeOnClick: true,
+        closeOnEsc: true,
       })
         .setLnglat(e.lngLat)
-        .setHTML(`<span>${e.feature.properties.name}: ${e.feature.properties[showKey]}亿万</span>`);
+        .setHTML(`<span>${e.feature.properties.name}: ${e.feature.properties[showKey]}亿</span>`);
       scene.addPopup(popup);
     });
   }, [showKey]);

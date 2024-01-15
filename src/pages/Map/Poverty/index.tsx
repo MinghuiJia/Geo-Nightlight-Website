@@ -16,6 +16,8 @@ const mapInstance = new Mapbox({
   style: 'light',
   center: [15, -20.8],
   // style: 'dark',
+  dragPan: false,
+  scrollZoom: false,
   pitch: 0,
   zoom: 3.3,
   token: 'pk.eyJ1Ijoiam1oMTk5OCIsImEiOiJjbHB2NnN6dGswMjJnMmtvOTU5cGNwdDN0In0.-D8QreNtfeSeuBN92vQQ1w',
