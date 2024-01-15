@@ -1,17 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useScene } from '@antv/larkmap';
 import { PointLayer, Popup, MouseLocation, Control } from '@antv/l7';
 
 import { southEastAsiaLegendAdd } from '../utils/getLegendAddFunction';
-import disasterJson from '../Data/SouthEastAsia/allYearsShortDisaster.json';
+
 import { SouthEastAsiaColors } from '../utils/legendColor';
+import { getDisasterJson } from '../../../services/map';
 
 interface Props {
   showKey: string;
 }
 
 const App: React.FC<Props> = ({ showKey }) => {
+  const [disasterJson, setDisasterJson] = useState<any>();
+
   const scene = useScene();
   useEffect(() => {
     const mouseLocation = new MouseLocation({
@@ -22,6 +25,11 @@ const App: React.FC<Props> = ({ showKey }) => {
     const legend = new Control({ position: 'bottomleft' });
     legend.onAdd = southEastAsiaLegendAdd;
 
+    // 异步加载数据
+    getDisasterJson().then((data) => {
+      setDisasterJson(data);
+    });
+
     scene.addControl(legend);
     return () => {
       scene.destroy();
@@ -30,7 +38,9 @@ const App: React.FC<Props> = ({ showKey }) => {
 
   useEffect(() => {
     scene.removeAllLayer();
-    const pointLayer = new PointLayer({})
+    const pointLayer = new PointLayer({
+      zIndex: 2,
+    })
       .source(disasterJson)
       .scale(showKey, {
         type: 'threshold',
@@ -56,7 +66,7 @@ const App: React.FC<Props> = ({ showKey }) => {
         .setHTML(`<span>${e.feature.properties.name}: ${e.feature.properties[showKey]}亿</span>`);
       scene.addPopup(popup);
     });
-  }, [showKey]);
+  }, [showKey, disasterJson]);
   return null;
 };
 

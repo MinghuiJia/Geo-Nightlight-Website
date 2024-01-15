@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useScene } from '@antv/larkmap';
 import { PolygonLayer, LineLayer, Popup, MouseLocation, Control, ILayer } from '@antv/l7';
 
-import povertyJson from '../Data/SouthAfrica/allYearsPoverty.json';
-import countriesBoundryJson from '../Data/SouthAfrica/countriesBoundry.json';
 import { SouthAfricaColors } from '../utils/legendColor';
 import { povertyLegendAdd } from '../utils/getLegendAddFunction';
+import { getSouthAfricaBoundry, getPovertyJson } from '../../../services/map';
 
 interface Props {
   showKey: string;
@@ -14,19 +13,9 @@ interface Props {
 
 const App: React.FC<Props> = ({ showKey }) => {
   const [polygonLayer, setPolygonLayer] = useState<ILayer>(new PolygonLayer({}));
+  const [povertyJson, setPovertyJson] = useState<any>();
 
   const scene = useScene();
-
-  const boundryLayer = new LineLayer({})
-    .source(countriesBoundryJson)
-    .color('#f10c0c')
-    .active(true)
-    .size(1)
-    .style({
-      lineType: 'dash',
-      dashArray: [2, 2],
-    });
-  scene.addLayer(boundryLayer);
 
   useEffect(() => {
     const mouseLocation = new MouseLocation({
@@ -36,6 +25,26 @@ const App: React.FC<Props> = ({ showKey }) => {
 
     const legend = new Control({ position: 'bottomleft' });
     legend.onAdd = povertyLegendAdd;
+
+    // 数据异步获取
+    getSouthAfricaBoundry().then((data) => {
+      const boundryLayer = new LineLayer({
+        zIndex: 2,
+      })
+        .source(data)
+        .color('#f10c0c')
+        .active(true)
+        .size(1)
+        .style({
+          lineType: 'dash',
+          dashArray: [2, 2],
+        });
+      scene.addLayer(boundryLayer);
+    });
+
+    getPovertyJson().then((data: any) => {
+      setPovertyJson(data);
+    });
 
     scene.addControl(legend);
     return () => {
@@ -70,7 +79,7 @@ const App: React.FC<Props> = ({ showKey }) => {
     scene.addLayer(layer);
 
     setPolygonLayer(layer);
-  }, [showKey]);
+  }, [showKey, povertyJson]);
 
   return null;
 };
