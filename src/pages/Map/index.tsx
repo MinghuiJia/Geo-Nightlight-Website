@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PovertyMap from './Poverty';
 import DisasterMap from './Disaster';
 import ElectrificationMap from './Electrification';
+import GDPMap from './GDP';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createFromIconfontCN } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
@@ -10,13 +11,14 @@ import { Menu } from 'antd';
 
 type MenuItem = Required<MenuProps>['items'][number];
 const IconFont = createFromIconfontCN({
-  scriptUrl: '//at.alicdn.com/t/c/font_3451964_kdwfe7psduf.js',
+  scriptUrl: '//at.alicdn.com/t/c/font_3451964_thuipwrzm7.js',
 });
 
 const keyToCard: Record<string, JSX.Element> = {
   sub1: <PovertyMap />,
   sub2: <ElectrificationMap />,
-  sub3: <DisasterMap />,
+  sub3: <GDPMap />,
+  sub4: <DisasterMap />,
 };
 
 function getItem(
@@ -36,13 +38,14 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('Application of Poverty', 'sub1', <IconFont type='icon-pinkuncun-' />),
-  getItem('Application of Electrification', 'sub2', <IconFont type='icon-dianli' />),
-  getItem('Application of Disaster', 'sub3', <IconFont type='icon-dizhizaihai' />),
+  getItem('Poverty', 'sub1', <IconFont type='icon-pinkuncun-' />),
+  getItem('Electrification', 'sub2', <IconFont type='icon-dianli' />),
+  getItem('Per Capita GDP Growth Rate', 'sub3', <IconFont type='icon-meiyuan' />),
+  getItem('Disaster', 'sub4', <IconFont type='icon-dizhizaihai' />),
 ];
 
 // submenu keys of first level
-const rootSubmenuKeys = ['sub1', 'sub2', 'sub3'];
+const rootSubmenuKeys = ['sub1', 'sub2', 'sub3', 'sub4'];
 
 const App: React.FC = () => {
   const [openKeys, setOpenKeys] = useState(['sub1']);

@@ -26,4 +26,19 @@ function getSouthEastAsiaColor(d: number, color: string[]) {
   return 'rgba(0,0,0,0)';
 }
 
-export { getSouthAfricaColor, getSouthEastAsiaColor };
+function getGDPColor(d: number, color: string[]) {
+  if (d === -10) return color[0];
+  if (d === -8) return color[1];
+  if (d === -6) return color[2];
+  if (d === -4) return color[3];
+  if (d === -2) return color[4];
+  if (d === 0) return color[5];
+  if (d === 2) return color[6];
+  if (d === 4) return color[7];
+  if (d === 6) return color[8];
+  if (d === 8) return color[10];
+  if (d === 10) return color[10];
+  return 'rgba(0,0,0,0)';
+}
+
+export { getSouthAfricaColor, getSouthEastAsiaColor, getGDPColor };

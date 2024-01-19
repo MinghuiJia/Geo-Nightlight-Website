@@ -24,5 +24,19 @@ const SouthEastAsiaColors = [
   'rgb(243, 41, 10)',
   'rgb(243, 12, 12)',
 ];
+
+const GDPColors = [
+  'rgb(8, 100, 12)',
+  'rgb(8, 150, 10)',
+  'rgb(8, 190, 21)',
+  'rgb(8, 225, 8)',
+  'rgb(8, 255, 52)',
+  'rgb(186, 225, 12)',
+  'rgb(225, 172, 12)',
+  'rgb(243, 135, 10)',
+  'rgb(243, 115, 10)',
+  'rgb(243, 80, 10)',
+  'rgb(255, 12, 12)',
+];
 // const SouthEastAsiaColors = ['#0A1FB2', '#02BEFF', '#FFB02A', '#FF7412', '#FF3417'];
-export { SouthAfricaColors, SouthEastAsiaColors };
+export { SouthAfricaColors, SouthEastAsiaColors, GDPColors };

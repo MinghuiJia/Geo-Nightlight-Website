@@ -18,4 +18,17 @@ const sliderMarks = {
   // },
 };
 
-export { sliderMarks };
+const timeIntervalSliderMarks = {
+  2012: '2012_2013',
+  2013: '2013_2014',
+  2014: '2014_2015',
+  2015: '2015_2016',
+  2016: '2016_2017',
+  2017: '2017_2018',
+  2018: '2018_2019',
+  2019: '2019_2020',
+  2020: '2020_2021',
+  2021: '2021_2022',
+};
+
+export { sliderMarks, timeIntervalSliderMarks };

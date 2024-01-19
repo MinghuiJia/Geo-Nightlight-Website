@@ -1,5 +1,5 @@
-import { SouthAfricaColors, SouthEastAsiaColors } from './legendColor';
-import { getSouthAfricaColor, getSouthEastAsiaColor } from './getColorFunction';
+import { SouthAfricaColors, SouthEastAsiaColors, GDPColors } from './legendColor';
+import { getSouthAfricaColor, getSouthEastAsiaColor, getGDPColor } from './getColorFunction';
 import styles from '../index.module.less';
 import { DOM } from '@antv/l7';
 
@@ -59,6 +59,26 @@ const electrificationLegendAdd = () => {
   return div;
 };
 
+const gdpLegendAdd = () => {
+  const div = DOM.create('div');
+  div.classList.add(styles.legend);
+  div.classList.add(styles.info);
+  const grades = [-10, -8, -6, -4, -2, 0, 2, 4, 6, 8, 10];
+  const grades2 = ['-10%', '-8%', '-6%', '-4%', '-2%', '0%', '2%', '4%', '6%', '8%', '10%'];
+
+  for (let i = 0; i < grades.length - 1; i++) {
+    div.innerHTML += `<i style="background: ${getGDPColor(grades[i], GDPColors)}"></i>`;
+  }
+  div.innerHTML += `<i style=" width: 110px; margin-left: 10px; background: rgba(0,0,0,0)">GDP Growth Rate</i>`;
+
+  div.innerHTML += '<br>';
+  for (let i = 0; i < grades2.length; i++) {
+    div.innerHTML += `<i>${grades2[i]}</>`;
+  }
+
+  return div;
+};
+
 const southEastAsiaLegendAdd = () => {
   const div = DOM.create('div');
   div.classList.add(styles.legend);
@@ -87,4 +107,4 @@ const southEastAsiaLegendAdd = () => {
   return div;
 };
 
-export { povertyLegendAdd, southEastAsiaLegendAdd, electrificationLegendAdd };
+export { povertyLegendAdd, southEastAsiaLegendAdd, electrificationLegendAdd, gdpLegendAdd };

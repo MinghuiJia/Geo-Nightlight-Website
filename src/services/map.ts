@@ -12,6 +12,10 @@ export const getElectrificationJson = () =>
   request({
     url: '/json/allYearsElectrification.json',
   });
+export const getGDPJson = () =>
+  request({
+    url: '/json/allYearsGDP.json',
+  });
 export const getDisasterJson = () =>
   request({
     url: '/json/allYearsShortDisaster.json',
