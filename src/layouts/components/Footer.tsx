@@ -13,10 +13,11 @@ const Footer = () => {
 
   return (
     <TFooter>
-      <Row justify='center'>
+      {/* <Row justify='center'>
         Copyright © 2022-{new Date().getFullYear()} 武汉大学测绘信息工程国家重点实验室版权所有 (Whu LIESMARS). All
         Rights Reserved
-      </Row>
+      </Row> */}
+      <Row justify='center'>Copyright © 2022-{new Date().getFullYear()} WHU LIESMARS. All Rights Reserved</Row>
     </TFooter>
   );
 };
