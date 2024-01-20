@@ -233,7 +233,6 @@ const DataSource = () => (
 
     <Card
       title='Yangwang-1 Night-time Light Product'
-      className={styles.welcome}
       bordered={false}
       description={
         <>

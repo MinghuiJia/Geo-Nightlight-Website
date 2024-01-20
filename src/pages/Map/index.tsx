@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PovertyMap from './Poverty';
-import DisasterMap from './Disaster';
+import ProductComponent from './Disaster/Product';
 import ElectrificationMap from './Electrification';
 import GDPMap from './GDP';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -18,7 +18,7 @@ const keyToCard: Record<string, JSX.Element> = {
   sub1: <PovertyMap />,
   sub2: <ElectrificationMap />,
   sub3: <GDPMap />,
-  sub4: <DisasterMap />,
+  sub4: <ProductComponent />,
 };
 
 function getItem(
@@ -82,7 +82,7 @@ const App: React.FC = () => {
         onOpenChange={onOpenChange}
         defaultSelectedKeys={['sub1']}
         defaultOpenKeys={['sub1']}
-        style={{ width: 286, minWidth: 286, maxWidth: 286, marginRight: 10 }}
+        style={{ width: 250, minWidth: 250, maxWidth: 250, marginRight: 10 }}
         items={items}
         onClick={itemClicked}
       />
