@@ -410,7 +410,7 @@ const DisasterProduct = () => {
           </Col>
         </Row>
       </Card>
-      <Card title='2 Estimation of Long-term Economic Losses'>
+      <Card title='2 Estimation of Long-term Economic Losses' className={styles.welcome}>
         <Row justify='space-between'>
           <Col>
             <p>
@@ -465,6 +465,17 @@ const DisasterProduct = () => {
                 Figure 3 Long-term Economic Losses at the Level of Affected Areas
               </div>
             </div>
+          </Col>
+        </Row>
+      </Card>
+      <Card title='3 Short-term and Long-term Economic Losses Data Download'>
+        <Row justify='space-between'>
+          <Col>
+            <p>
+              Combining relevant data to estimate short-term and long-term economic losses caused by natural disasters
+              in Southeast Asian countries.
+            </p>
+            <a href='http://43.154.234.176:80/json/economicLoss.xlsx'>Download excel data</a>
           </Col>
         </Row>
       </Card>
