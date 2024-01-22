@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import DataSource from './Source';
+import DataProcessed from './Processed';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createFromIconfontCN } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
@@ -13,6 +14,7 @@ const IconFont = createFromIconfontCN({
 
 const keyToCard: Record<string, JSX.Element> = {
   sub1: <DataSource />,
+  sub2: <DataProcessed />,
 };
 
 function getItem(
