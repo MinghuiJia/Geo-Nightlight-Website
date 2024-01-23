@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Card, Col, Row, Image } from 'tdesign-react';
+import { Card, Col, Row, Image, Link } from 'tdesign-react';
 import { Table } from 'antd';
 
 import styles from '../index.module.less';
@@ -475,7 +475,9 @@ const DisasterProduct = () => {
               Combining relevant data to estimate short-term and long-term economic losses caused by natural disasters
               in Southeast Asian countries.
             </p>
-            <a href='http://43.154.234.176:80/json/economicLoss.xlsx'>Download excel data</a>
+            <Link theme='primary' style={{ fontWeight: 'bold' }} href='http://43.154.234.176:80/json/economicLoss.xlsx'>
+              Download excel data
+            </Link>
           </Col>
         </Row>
       </Card>

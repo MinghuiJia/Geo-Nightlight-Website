@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Card, Col, Row } from 'tdesign-react';
+import { Card, Col, Row, Link } from 'tdesign-react';
 import styles from '../index.module.less';
 import { Table } from 'antd';
 
@@ -155,14 +155,14 @@ const DataProcessed = () => (
           </p>
           <p>
             Download each country night-time light remote sensing data, please{' '}
-            <a
+            <Link
+              theme='primary'
               href='http://43.154.234.176:8088/folder/SouthAfrica'
               target='_blank'
-              rel='noreferrer'
               style={{ fontWeight: 'bold' }}
             >
               click
-            </a>{' '}
+            </Link>{' '}
             here.
           </p>
         </Col>
@@ -182,14 +182,14 @@ const DataProcessed = () => (
           </p>
           <p>
             Download each country night-time light remote sensing data, please{' '}
-            <a
+            <Link
+              theme='primary'
               href='http://43.154.234.176:8088/folder/SouthEastCountry'
               target='_blank'
-              rel='noreferrer'
               style={{ fontWeight: 'bold' }}
             >
               click
-            </a>{' '}
+            </Link>{' '}
             here.
           </p>
           <div style={{ textAlign: 'center', fontWeight: 'bold' }}>
