@@ -5,6 +5,7 @@ import { LarkMap } from '@antv/larkmap';
 import { Mapbox } from '@antv/l7-maps';
 import { Slider } from 'antd';
 import type { SliderMarks } from 'antd/es/slider';
+import { Link } from 'tdesign-react';
 
 import GDPComponent from './GDP';
 import { timeIntervalSliderMarks } from '../utils/sliderMarks';
@@ -43,11 +44,21 @@ const App: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', padding: '0 30px 10px 20px', width: '100%' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', padding: '0 30px 0px 20px', width: '100%' }}>
       <Slider min={2012} max={2021} step={1} defaultValue={2012} onChange={handleSliderChange} marks={marks} />
       <LarkMap map={mapInstance} style={{ minHeight: '500px', justifyContent: 'center', position: 'relative' }}>
         <GDPComponent showKey={showKey} />
       </LarkMap>
+      <span>
+        Download:{' '}
+        <Link
+          theme='primary'
+          href='http://43.154.234.176:80/json/perCapitaGPDGrowthRate_southernAfrica.xlsx'
+          style={{ fontWeight: 'bold' }}
+        >
+          Per Capita GPD Growth Rate Data
+        </Link>
+      </span>
     </div>
   );
 };

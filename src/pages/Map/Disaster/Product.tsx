@@ -475,9 +475,17 @@ const DisasterProduct = () => {
               Combining relevant data to estimate short-term and long-term economic losses caused by natural disasters
               in Southeast Asian countries.
             </p>
-            <Link theme='primary' style={{ fontWeight: 'bold' }} href='http://43.154.234.176:80/json/economicLoss.xlsx'>
-              Download excel data
-            </Link>
+
+            <span>
+              Download:{' '}
+              <Link
+                theme='primary'
+                href='http://43.154.234.176:80/json/economicLoss.xlsx'
+                style={{ fontWeight: 'bold' }}
+              >
+                Short-term and Long-term Economic Losses Data
+              </Link>
+            </span>
           </Col>
         </Row>
       </Card>
