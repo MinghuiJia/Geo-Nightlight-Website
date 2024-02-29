@@ -8,6 +8,7 @@ import cases from './modules/cases';
 import learn from './modules/learn';
 import contact from './modules/contact';
 import map from './modules/map';
+import method from './modules/method';
 
 export interface IRouter {
   path: string;
@@ -46,6 +47,7 @@ const allRoutes = [
   ...routes,
   ...introduction,
   ...data,
+  ...method,
   ...map,
   ...cases,
   ...paper,
